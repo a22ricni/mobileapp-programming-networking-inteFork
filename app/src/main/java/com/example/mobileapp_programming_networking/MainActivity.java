@@ -22,17 +22,23 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        //new JsonFile(this,this).execute(JSON_FILE);
 
-        ArrayList<RecyclerViewItem> items = new ArrayList<>(Arrays.asList(
-                new RecyclerViewItem("Matterhorn"),
-                new RecyclerViewItem("Mont Blanc"),
-                new RecyclerViewItem("Denali")
+    }
+
+    @Override
+    public void onPostExecute(String json) {
+        Log.d("MainActivity", json);
+
+
+        ArrayList<Mountain> items = new ArrayList<>(Arrays.asList(
+                new Mountain("Matterhorn"),
+                new Mountain("Mont Blanc"),
+                new Mountain("Denali")
         ));
 
         RecyclerViewAdapter adapter = new RecyclerViewAdapter(this, items, new RecyclerViewAdapter.OnClickListener() {
             @Override
-            public void onClick(RecyclerViewItem item) {
+            public void onClick(Mountain item) {
                 Toast.makeText(MainActivity.this, item.getTitle(), Toast.LENGTH_SHORT).show();
             }
         });
@@ -40,11 +46,7 @@ public class MainActivity extends AppCompatActivity implements JsonTask.JsonTask
         RecyclerView view = findViewById(R.id.recycler_view);
         view.setLayoutManager(new LinearLayoutManager(this));
         view.setAdapter(adapter);
-    }
 
-    @Override
-    public void onPostExecute(String json) {
-        Log.d("MainActivity", json);
     }
 
 }

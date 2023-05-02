@@ -1,11 +1,10 @@
 package com.example.mobileapp_programming_networking;
 
-@SuppressWarnings("WeakerAccess")
-public class RecyclerViewItem {
+public class Mountain {
 
     private String title;
 
-    public RecyclerViewItem(String title){
+    public Mountain(String title){
         this.title = title;
     }
 
